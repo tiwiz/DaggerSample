@@ -7,7 +7,7 @@ import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 
 import net.orgiu.disample.api.DeviceService;
-import net.orgiu.disample.api.FoneApiDeviceService;
+import net.orgiu.disample.api.FonoApiDeviceService;
 
 import javax.inject.Singleton;
 
@@ -40,6 +40,6 @@ class ApplicationModule {
 
     @Provides
     DeviceService provideDeviceService(Context context, Retrofit retrofit) {
-        return new FoneApiDeviceService(retrofit, context.getString(R.string.fono_api_key));
+        return new FonoApiDeviceService(retrofit, context.getString(R.string.fono_api_key));
     }
 }

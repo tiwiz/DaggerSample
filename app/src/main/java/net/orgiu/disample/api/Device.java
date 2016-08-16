@@ -1,8 +1,11 @@
 package net.orgiu.disample.api;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Device {
+public class Device implements Parcelable{
 
     @SerializedName("DeviceName")
     private final String deviceName;
@@ -163,6 +166,134 @@ public class Device {
         this._3gBands = _3gBands;
         this._4gBands = _4gBands;
     }
+
+    protected Device(Parcel in) {
+        deviceName = in.readString();
+        brand = in.readString();
+        technology = in.readString();
+        gprs = in.readString();
+        edge = in.readString();
+        announced = in.readString();
+        status = in.readString();
+        dimensions = in.readString();
+        weight = in.readString();
+        sim = in.readString();
+        type = in.readString();
+        size = in.readString();
+        resolution = in.readString();
+        cardSlot = in.readString();
+        alertTypes = in.readString();
+        loudspeaker = in.readString();
+        soundC = in.readString();
+        wlan = in.readString();
+        bluetooth = in.readString();
+        gps = in.readString();
+        radio = in.readString();
+        usb = in.readString();
+        messaging = in.readString();
+        browser = in.readString();
+        java = in.readString();
+        featuresC = in.readString();
+        batteryC = in.readString();
+        standBy = in.readString();
+        talkTime = in.readString();
+        colors = in.readString();
+        sensors = in.readString();
+        cpu = in.readString();
+        internal = in.readString();
+        os = in.readString();
+        primary = in.readString();
+        video = in.readString();
+        secondary = in.readString();
+        speed = in.readString();
+        networkC = in.readString();
+        chipset = in.readString();
+        features = in.readString();
+        musicPlay = in.readString();
+        protection = in.readString();
+        gpu = in.readString();
+        multitouch = in.readString();
+        nfc = in.readString();
+        camera = in.readString();
+        performance = in.readString();
+        _2gBands = in.readString();
+        _35mmJack = in.readString();
+        _3gBands = in.readString();
+        _4gBands = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(deviceName);
+        dest.writeString(brand);
+        dest.writeString(technology);
+        dest.writeString(gprs);
+        dest.writeString(edge);
+        dest.writeString(announced);
+        dest.writeString(status);
+        dest.writeString(dimensions);
+        dest.writeString(weight);
+        dest.writeString(sim);
+        dest.writeString(type);
+        dest.writeString(size);
+        dest.writeString(resolution);
+        dest.writeString(cardSlot);
+        dest.writeString(alertTypes);
+        dest.writeString(loudspeaker);
+        dest.writeString(soundC);
+        dest.writeString(wlan);
+        dest.writeString(bluetooth);
+        dest.writeString(gps);
+        dest.writeString(radio);
+        dest.writeString(usb);
+        dest.writeString(messaging);
+        dest.writeString(browser);
+        dest.writeString(java);
+        dest.writeString(featuresC);
+        dest.writeString(batteryC);
+        dest.writeString(standBy);
+        dest.writeString(talkTime);
+        dest.writeString(colors);
+        dest.writeString(sensors);
+        dest.writeString(cpu);
+        dest.writeString(internal);
+        dest.writeString(os);
+        dest.writeString(primary);
+        dest.writeString(video);
+        dest.writeString(secondary);
+        dest.writeString(speed);
+        dest.writeString(networkC);
+        dest.writeString(chipset);
+        dest.writeString(features);
+        dest.writeString(musicPlay);
+        dest.writeString(protection);
+        dest.writeString(gpu);
+        dest.writeString(multitouch);
+        dest.writeString(nfc);
+        dest.writeString(camera);
+        dest.writeString(performance);
+        dest.writeString(_2gBands);
+        dest.writeString(_35mmJack);
+        dest.writeString(_3gBands);
+        dest.writeString(_4gBands);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Device> CREATOR = new Creator<Device>() {
+        @Override
+        public Device createFromParcel(Parcel in) {
+            return new Device(in);
+        }
+
+        @Override
+        public Device[] newArray(int size) {
+            return new Device[size];
+        }
+    };
 
     public String getDeviceName() {
         return deviceName;

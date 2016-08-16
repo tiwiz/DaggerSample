@@ -6,12 +6,12 @@ import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class FoneApiDeviceService implements DeviceService{
+public class FonoApiDeviceService implements DeviceService{
 
     private Retrofit retrofit;
     private final String token;
 
-    public FoneApiDeviceService(Retrofit retrofit, String token) {
+    public FonoApiDeviceService(Retrofit retrofit, String token) {
         this.retrofit = retrofit;
         this.token = token;
     }
@@ -21,7 +21,6 @@ public class FoneApiDeviceService implements DeviceService{
         retrofit.create(FonoApiService.class).getDeviceData(token, model)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .toList()
-                .subscribe(listener::onDeviveDataRetrieved, listener::onDeviceDataFailed);
+                .subscribe(listener::onDeviceDataRetrieved, listener::onDeviceDataFailed);
     }
 }

@@ -6,10 +6,14 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 
+import net.orgiu.disample.api.DeviceService;
+import net.orgiu.disample.api.FoneApiDeviceService;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
 
 @Module
 class ApplicationModule {
@@ -32,5 +36,10 @@ class ApplicationModule {
     @Provides @Singleton
     ConnectivityManager providesConnectivityManager(Context context) {
         return (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    }
+
+    @Provides
+    DeviceService provideDeviceService(Context context, Retrofit retrofit) {
+        return new FoneApiDeviceService(retrofit, context.getString(R.string.fono_api_key));
     }
 }

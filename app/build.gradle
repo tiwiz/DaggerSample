@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 24
@@ -18,6 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -26,9 +32,36 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.google.code.gson:gson:2.7'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
 
     //Dependency Injection
     compile 'com.google.dagger:dagger:2.6'
     apt 'com.google.dagger:dagger-compiler:2.6'
     provided 'javax.annotation:jsr250-api:1.0'
 }
+
+String getJavaHome(String version) {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine "/usr/libexec/java_home", "-v", version
+        standardOutput = stdout;
+    }
+    return stdout.toString().trim()
+}
+
+import org.gradle.internal.os.OperatingSystem;
+
+task findOs {
+    doLast {
+        if (OperatingSystem.current().isMacOsX()) {
+            println("Adding retrolmbda")
+            retrolambda {
+                jdk System.getenv("JAVA8_HOME") ?: getJavaHome("1.8")
+                oldJdk System.getenv("JAVA7_HOME") ?: getJavaHome("1.7")
+            }
+        }
+    }
+}
+preBuild.dependsOn findOs

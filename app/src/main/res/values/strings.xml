@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DI Sample</string>
+    <string name="forecast_io_api_key">fd84e2e94e7ca142b172be15cb3afb51</string>
 </resources>

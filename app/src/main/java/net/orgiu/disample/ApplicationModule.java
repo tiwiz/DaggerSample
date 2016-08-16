@@ -12,25 +12,25 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ApplicationModule {
+class ApplicationModule {
     private final Context context;
 
-    public ApplicationModule(Context context) {
+    ApplicationModule(Context context) {
         this.context = context;
     }
 
     @Provides @Singleton
-    public Context providesContext() {
+    Context providesContext() {
         return context;
     }
 
     @Provides @Singleton
-    public SharedPreferences providesSharedPreferences() {
+    SharedPreferences providesSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @Provides @Singleton
-    public ConnectivityManager providesConnectivityManager() {
+    ConnectivityManager providesConnectivityManager(Context context) {
         return (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 }

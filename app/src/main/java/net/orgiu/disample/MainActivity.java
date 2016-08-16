@@ -1,16 +1,15 @@
 package net.orgiu.disample;
 
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    SharedPreferences preferences;
+    ConnectivityManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

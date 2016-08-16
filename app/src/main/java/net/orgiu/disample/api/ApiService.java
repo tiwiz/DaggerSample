@@ -3,7 +3,6 @@ package net.orgiu.disample.api;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.jaredrummler.android.device.DeviceName;
 
@@ -13,6 +12,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
 public class ApiService extends Service implements DeviceListener {
@@ -44,11 +45,22 @@ public class ApiService extends Service implements DeviceListener {
 
     @Override
     public void onDeviceDataRetrieved(List<Device> devices) {
-        Timber.d(devices.toString());
+        Timber.d("Devices list updated.");
+
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder(this).build();
+        Realm.setDefaultConfiguration(realmConfig);
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+        realm.copyToRealm(devices);
+        realm.commitTransaction();
+
+        stopSelf();
     }
 
     @Override
     public void onDeviceDataFailed(Throwable throwable) {
         Timber.e(throwable.getMessage());
+        stopSelf();
     }
 }

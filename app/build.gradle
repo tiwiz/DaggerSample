@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 24
@@ -45,8 +46,6 @@ dependencies {
     compile 'com.jaredrummler:android-device-names:1.1.0'
 
     //Database
-    compile 'com.google.firebase:firebase-core:9.4.0'
-    compile 'com.google.firebase:firebase-database:9.4.0'
 
     //Logging
     compile 'com.jakewharton.timber:timber:4.2.0'
@@ -80,5 +79,3 @@ task findOs {
     }
 }
 preBuild.dependsOn findOs
-
-apply plugin: 'com.google.gms.google-services'

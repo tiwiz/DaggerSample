@@ -5,112 +5,172 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Device implements Parcelable{
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+public class Device extends RealmObject implements Parcelable{
+
+    @PrimaryKey
+    private long id;
     @SerializedName("DeviceName")
-    private final String deviceName;
+    private String deviceName;
     @SerializedName("Brand")
-    private final String brand;
+    private String brand;
     @SerializedName("technology")
-    private final String technology;
+    private String technology;
     @SerializedName("gprs")
-    private final String gprs;
+    private String gprs;
     @SerializedName("edge")
-    private final String edge;
+    private String edge;
     @SerializedName("announced")
-    private final String announced;
+    private String announced;
     @SerializedName("status")
-    private final String status;
+    private String status;
     @SerializedName("dimensions")
-    private final String dimensions;
+    private String dimensions;
     @SerializedName("weight")
-    private final String weight;
+    private String weight;
     @SerializedName("sim")
-    private final String sim;
+    private String sim;
     @SerializedName("type")
-    private final String type;
+    private String type;
     @SerializedName("size")
-    private final String size;
+    private String size;
     @SerializedName("resolution")
-    private final String resolution;
+    private String resolution;
     @SerializedName("card_slot")
-    private final String cardSlot;
+    private String cardSlot;
     @SerializedName("alert_types")
-    private final String alertTypes;
+    private String alertTypes;
     @SerializedName("loudspeaker_")
-    private final String loudspeaker;
+    private String loudspeaker;
     @SerializedName("sound_c")
-    private final String soundC;
+    private String soundC;
     @SerializedName("wlan")
-    private final String wlan;
+    private String wlan;
     @SerializedName("bluetooth")
-    private final String bluetooth;
+    private String bluetooth;
     @SerializedName("gps")
-    private final String gps;
+    private String gps;
     @SerializedName("radio")
-    private final String radio;
+    private String radio;
     @SerializedName("usb")
-    private final String usb;
+    private String usb;
     @SerializedName("messaging")
-    private final String messaging;
+    private String messaging;
     @SerializedName("browser")
-    private final String browser;
+    private String browser;
     @SerializedName("java")
-    private final String java;
+    private String java;
     @SerializedName("features_c")
-    private final String featuresC;
+    private String featuresC;
     @SerializedName("battery_c")
-    private final String batteryC;
+    private String batteryC;
     @SerializedName("stand_by")
-    private final String standBy;
+    private String standBy;
     @SerializedName("talk_time")
-    private final String talkTime;
+    private String talkTime;
     @SerializedName("colors")
-    private final String colors;
+    private String colors;
     @SerializedName("sensors")
-    private final String sensors;
+    private String sensors;
     @SerializedName("cpu")
-    private final String cpu;
+    private String cpu;
     @SerializedName("internal")
-    private final String internal;
+    private String internal;
     @SerializedName("os")
-    private final String os;
+    private String os;
     @SerializedName("primary_")
-    private final String primary;
+    private String primary;
     @SerializedName("video")
-    private final String video;
+    private String video;
     @SerializedName("secondary")
-    private final String secondary;
+    private String secondary;
     @SerializedName("speed")
-    private final String speed;
+    private String speed;
     @SerializedName("network_c")
-    private final String networkC;
+    private String networkC;
     @SerializedName("chipset")
-    private final String chipset;
+    private String chipset;
     @SerializedName("features")
-    private final String features;
+    private String features;
     @SerializedName("music_play")
-    private final String musicPlay;
+    private String musicPlay;
     @SerializedName("protection")
-    private final String protection;
+    private String protection;
     @SerializedName("gpu")
-    private final String gpu;
+    private String gpu;
     @SerializedName("multitouch")
-    private final String multitouch;
+    private String multitouch;
     @SerializedName("nfc")
-    private final String nfc;
+    private String nfc;
     @SerializedName("camera")
-    private final String camera;
+    private String camera;
     @SerializedName("performance")
-    private final String performance;
+    private String performance;
     @SerializedName("_2g_bands")
-    private final String _2gBands;
+    private String _2gBands;
     @SerializedName("_3_5mm_jack_")
-    private final String _35mmJack;
+    private String _35mmJack;
     @SerializedName("_3g_bands")
-    private final String _3gBands;
+    private String _3gBands;
     @SerializedName("_4g_bands")
-    private final String _4gBands;
+    private String _4gBands;
+
+    public Device() {
+        this.deviceName = "";
+        this.brand = "";
+        this.technology = "";
+        this.gprs = "";
+        this.edge = "";
+        this.announced = "";
+        this.status = "";
+        this.dimensions = "";
+        this.weight = "";
+        this.sim = "";
+        this.type = "";
+        this.size = "";
+        this.resolution = "";
+        this.cardSlot = "";
+        this.alertTypes = "";
+        this.loudspeaker = "";
+        this.soundC = "";
+        this.wlan = "";
+        this.bluetooth = "";
+        this.gps = "";
+        this.radio = "";
+        this.usb = "";
+        this.messaging = "";
+        this.browser = "";
+        this.java = "";
+        this.featuresC = "";
+        this.batteryC = "";
+        this.standBy = "";
+        this.talkTime = "";
+        this.colors = "";
+        this.sensors = "";
+        this.cpu = "";
+        this.internal = "";
+        this.os = "";
+        this.primary = "";
+        this.video = "";
+        this.secondary = "";
+        this.speed = "";
+        this.networkC = "";
+        this.chipset = "";
+        this.features = "";
+        this.musicPlay = "";
+        this.protection = "";
+        this.gpu = "";
+        this.multitouch = "";
+        this.nfc = "";
+        this.camera = "";
+        this.performance = "";
+        this._2gBands = "";
+        this._35mmJack = "";
+        this._3gBands = "";
+        this._4gBands = "";
+    }
 
     public Device(String deviceName, String brand, String technology, String gprs, String edge, String announced, String status, String dimensions, String weight, String sim, String type, String size, String resolution, String cardSlot, String alertTypes, String loudspeaker, String soundC, String wlan, String bluetooth, String gps, String radio, String usb, String messaging, String browser, String java, String featuresC, String batteryC, String standBy, String talkTime, String colors, String sensors, String cpu, String internal, String os, String primary, String video, String secondary, String speed, String networkC, String chipset, String features, String musicPlay, String protection, String gpu, String multitouch, String nfc, String camera, String performance, String _2gBands, String _35mmJack, String _3gBands, String _4gBands) {
         this.deviceName = deviceName;
@@ -283,7 +343,7 @@ public class Device implements Parcelable{
         return 0;
     }
 
-    public static final Creator<Device> CREATOR = new Creator<Device>() {
+    public static Creator<Device> CREATOR = new Creator<Device>() {
         @Override
         public Device createFromParcel(Parcel in) {
             return new Device(in);

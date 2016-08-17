@@ -2,12 +2,14 @@ package net.orgiu.disample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import net.orgiu.disample.database.RealmDevice;
 import net.orgiu.disample.list.DeviceAdapter;
+import net.orgiu.disample.list.ItemOffsetDecoration;
 
 import javax.inject.Inject;
 
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         emptyStateView = findViewById(R.id.emptyStateView);
         devicesListView = (RecyclerView) findViewById(R.id.devicesListView);
-        devicesListView.setLayoutManager(new LinearLayoutManager(this));
+        devicesListView.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.main_view_number_of_columns)));
+        devicesListView.addItemDecoration(new ItemOffsetDecoration(this, R.dimen.main_view_item_offset));
         devicesListView.setAdapter(adapter);
 
         updateViewVisibility();

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import net.orgiu.disample.R;
 import net.orgiu.disample.database.RealmDevice;
@@ -23,7 +24,10 @@ class DevicesViewHolder extends RecyclerView.ViewHolder {
     }
 
     void bindTo(@NonNull RealmDevice device) {
-        Glide.with(modelImageView.getContext()).load(device.getImageUrl()).into(modelImageView);
+        Glide.with(modelImageView.getContext())
+                .load(device.getImageUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(modelImageView);
         modelTextView.setText(DeviceUtils.clearFromBrand(device));
     }
 }

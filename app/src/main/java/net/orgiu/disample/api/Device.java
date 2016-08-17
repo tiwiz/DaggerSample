@@ -6,12 +6,9 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 public class Device extends RealmObject implements Parcelable{
 
-    @PrimaryKey
-    private long id;
     @SerializedName("DeviceName")
     private String deviceName;
     @SerializedName("Brand")

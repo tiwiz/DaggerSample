@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import net.orgiu.disample.api.ApiModule;
 import net.orgiu.disample.api.ApiService;
+import net.orgiu.disample.database.DatabaseModule;
 
 import timber.log.Timber;
 
@@ -21,6 +22,7 @@ public class App extends Application{
         component = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .apiModule(new ApiModule())
+                .databaseModule(new DatabaseModule())
                 .build();
 
         startService(new Intent(this, ApiService.class));

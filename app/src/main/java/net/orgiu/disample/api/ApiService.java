@@ -21,6 +21,9 @@ public class ApiService extends Service implements DeviceListener {
     @Inject
     DeviceService deviceService;
 
+    @Inject
+    Realm realm;
+
     public ApiService() {
     }
 
@@ -46,16 +49,14 @@ public class ApiService extends Service implements DeviceListener {
     @Override
     public void onDeviceDataRetrieved(List<Device> devices) {
         Timber.d("Devices list updated.");
-
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder(this).build();
-        Realm.setDefaultConfiguration(realmConfig);
-        Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-        realm.copyToRealm(devices);
-        realm.commitTransaction();
-
+        saveDeviceToBatabase(devices);
         stopSelf();
+    }
+
+    private void saveDeviceToBatabase(List<Device> devices) {
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(devices);
+        realm.commitTransaction();
     }
 
     @Override

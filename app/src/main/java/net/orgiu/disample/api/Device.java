@@ -6,10 +6,11 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Device extends RealmObject implements Parcelable{
 
-    @SerializedName("DeviceName")
+    @SerializedName("DeviceName") @PrimaryKey
     private String deviceName;
     @SerializedName("Brand")
     private String brand;
@@ -558,6 +559,74 @@ public class Device extends RealmObject implements Parcelable{
 
     public String get_4gBands() {
         return _4gBands;
+    }
+
+    @Override
+    public int hashCode() {
+        return deviceName.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "deviceName='" + deviceName + '\'' +
+                ", brand='" + brand + '\'' +
+                ", technology='" + technology + '\'' +
+                ", gprs='" + gprs + '\'' +
+                ", edge='" + edge + '\'' +
+                ", announced='" + announced + '\'' +
+                ", status='" + status + '\'' +
+                ", dimensions='" + dimensions + '\'' +
+                ", weight='" + weight + '\'' +
+                ", sim='" + sim + '\'' +
+                ", type='" + type + '\'' +
+                ", size='" + size + '\'' +
+                ", resolution='" + resolution + '\'' +
+                ", cardSlot='" + cardSlot + '\'' +
+                ", alertTypes='" + alertTypes + '\'' +
+                ", loudspeaker='" + loudspeaker + '\'' +
+                ", soundC='" + soundC + '\'' +
+                ", wlan='" + wlan + '\'' +
+                ", bluetooth='" + bluetooth + '\'' +
+                ", gps='" + gps + '\'' +
+                ", radio='" + radio + '\'' +
+                ", usb='" + usb + '\'' +
+                ", messaging='" + messaging + '\'' +
+                ", browser='" + browser + '\'' +
+                ", java='" + java + '\'' +
+                ", featuresC='" + featuresC + '\'' +
+                ", batteryC='" + batteryC + '\'' +
+                ", standBy='" + standBy + '\'' +
+                ", talkTime='" + talkTime + '\'' +
+                ", colors='" + colors + '\'' +
+                ", sensors='" + sensors + '\'' +
+                ", cpu='" + cpu + '\'' +
+                ", internal='" + internal + '\'' +
+                ", os='" + os + '\'' +
+                ", primary='" + primary + '\'' +
+                ", video='" + video + '\'' +
+                ", secondary='" + secondary + '\'' +
+                ", speed='" + speed + '\'' +
+                ", networkC='" + networkC + '\'' +
+                ", chipset='" + chipset + '\'' +
+                ", features='" + features + '\'' +
+                ", musicPlay='" + musicPlay + '\'' +
+                ", protection='" + protection + '\'' +
+                ", gpu='" + gpu + '\'' +
+                ", multitouch='" + multitouch + '\'' +
+                ", nfc='" + nfc + '\'' +
+                ", camera='" + camera + '\'' +
+                ", performance='" + performance + '\'' +
+                ", _2gBands='" + _2gBands + '\'' +
+                ", _35mmJack='" + _35mmJack + '\'' +
+                ", _3gBands='" + _3gBands + '\'' +
+                ", _4gBands='" + _4gBands + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Device && ((Device) obj).deviceName.equalsIgnoreCase(deviceName);
     }
 }
 

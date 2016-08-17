@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import net.orgiu.disample.R;
-import net.orgiu.disample.api.Device;
+import net.orgiu.disample.database.RealmDevice;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DevicesViewHolder>{
-    private List<Device> devices = new ArrayList<>(0);
+    private final List<RealmDevice> devices = new ArrayList<>(0);
 
     @Override
     public DevicesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,7 +30,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DevicesViewHolder>{
         return devices.size();
     }
 
-    public void setDevices(List<Device> devices) {
+    public void setDevices(List<RealmDevice> devices) {
         this.devices.clear();
         this.devices.addAll(devices);
         notifyDataSetChanged();

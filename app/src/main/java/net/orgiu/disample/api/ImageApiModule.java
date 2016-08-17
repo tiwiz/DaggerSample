@@ -12,21 +12,22 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class ApiModule {
-    private static final String URL = "FONO_API_URL";
-    public static final String FONO_API_RETROFIT = "FONO_API_RETROFIT";
-    private static final String FONO_API_CLIENT = "FONO_API_CLIENT";
-    private static final String FONO_API_INTERCEPTOR = "FONO_API_INTERCEPTOR";
+public class ImageApiModule {
 
-    @Provides @Named(FONO_API_INTERCEPTOR)
+    private static final String IMAGE_URL = "IMAGE_API_URL";
+    private static final String IMAGE_API_RETROFIT = "IMAGE_API_RETROFIT";
+    private static final String IMAGE_CLIENT = "IMAGE_CLIENT";
+    private static final String IMAGE_INTERCEPTOR = "IMAGE_INTERCEPTOR";
+
+    @Provides @Named(IMAGE_INTERCEPTOR)
     HttpLoggingInterceptor provideInterceptor() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
     }
 
-    @Provides @Named(FONO_API_CLIENT)
-    OkHttpClient provideClient(@Named(FONO_API_INTERCEPTOR) HttpLoggingInterceptor interceptor) {
+    @Provides @Named(IMAGE_CLIENT)
+    OkHttpClient provideClient(@Named(IMAGE_INTERCEPTOR) HttpLoggingInterceptor interceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build();
@@ -34,18 +35,23 @@ public class ApiModule {
 
     @SuppressWarnings("SameReturnValue")
     @Provides
-    @Named(URL)
+    @Named(IMAGE_URL)
     String provideBaseUrl() {
-        return "https://fonoapi.freshpixl.com/v1/";
+        return ImageApiService.ENDPOINT;
     }
 
-    @Provides @Singleton @Named(FONO_API_RETROFIT)
-    Retrofit provideRetrofit(@Named(URL) String baseUrl, @Named(FONO_API_CLIENT) OkHttpClient client) {
+    @Provides @Singleton @Named(IMAGE_API_RETROFIT)
+    Retrofit provideRetrofit(@Named(IMAGE_URL) String baseUrl, @Named(IMAGE_CLIENT) OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(client)
                 .build();
+    }
+
+    @Provides @Singleton
+    ImageApiService provideImageApiService(@Named(IMAGE_API_RETROFIT) Retrofit retrofit) {
+        return retrofit.create(ImageApiService.class);
     }
 }

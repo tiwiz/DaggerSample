@@ -1,119 +1,115 @@
 package net.orgiu.disample.api;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
+public class Device{
 
-public class Device extends RealmObject implements Parcelable{
-
-    @SerializedName("DeviceName") @PrimaryKey
-    private String deviceName;
+    @SerializedName("DeviceName")
+    private final String deviceName;
     @SerializedName("Brand")
-    private String brand;
+    private final String brand;
     @SerializedName("technology")
-    private String technology;
+    private final String technology;
     @SerializedName("gprs")
-    private String gprs;
+    private final String gprs;
     @SerializedName("edge")
-    private String edge;
+    private final String edge;
     @SerializedName("announced")
-    private String announced;
+    private final String announced;
     @SerializedName("status")
-    private String status;
+    private final String status;
     @SerializedName("dimensions")
-    private String dimensions;
+    private final String dimensions;
     @SerializedName("weight")
-    private String weight;
+    private final String weight;
     @SerializedName("sim")
-    private String sim;
+    private final String sim;
     @SerializedName("type")
-    private String type;
+    private final String type;
     @SerializedName("size")
-    private String size;
+    private final String size;
     @SerializedName("resolution")
-    private String resolution;
+    private final String resolution;
     @SerializedName("card_slot")
-    private String cardSlot;
+    private final String cardSlot;
     @SerializedName("alert_types")
-    private String alertTypes;
+    private final String alertTypes;
     @SerializedName("loudspeaker_")
-    private String loudspeaker;
+    private final String loudspeaker;
     @SerializedName("sound_c")
-    private String soundC;
+    private final String soundC;
     @SerializedName("wlan")
-    private String wlan;
+    private final String wlan;
     @SerializedName("bluetooth")
-    private String bluetooth;
+    private final String bluetooth;
     @SerializedName("gps")
-    private String gps;
+    private final String gps;
     @SerializedName("radio")
-    private String radio;
+    private final String radio;
     @SerializedName("usb")
-    private String usb;
+    private final String usb;
     @SerializedName("messaging")
-    private String messaging;
+    private final String messaging;
     @SerializedName("browser")
-    private String browser;
+    private final String browser;
     @SerializedName("java")
-    private String java;
+    private final String java;
     @SerializedName("features_c")
-    private String featuresC;
+    private final String featuresC;
     @SerializedName("battery_c")
-    private String batteryC;
+    private final String batteryC;
     @SerializedName("stand_by")
-    private String standBy;
+    private final String standBy;
     @SerializedName("talk_time")
-    private String talkTime;
+    private final String talkTime;
     @SerializedName("colors")
-    private String colors;
+    private final String colors;
     @SerializedName("sensors")
-    private String sensors;
+    private final String sensors;
     @SerializedName("cpu")
-    private String cpu;
+    private final String cpu;
     @SerializedName("internal")
-    private String internal;
+    private final String internal;
     @SerializedName("os")
-    private String os;
+    private final String os;
     @SerializedName("primary_")
-    private String primary;
+    private final String primary;
     @SerializedName("video")
-    private String video;
+    private final String video;
     @SerializedName("secondary")
-    private String secondary;
+    private final String secondary;
     @SerializedName("speed")
-    private String speed;
+    private final String speed;
     @SerializedName("network_c")
-    private String networkC;
+    private final String networkC;
     @SerializedName("chipset")
-    private String chipset;
+    private final String chipset;
     @SerializedName("features")
-    private String features;
+    private final String features;
     @SerializedName("music_play")
-    private String musicPlay;
+    private final String musicPlay;
     @SerializedName("protection")
-    private String protection;
+    private final String protection;
     @SerializedName("gpu")
-    private String gpu;
+    private final String gpu;
     @SerializedName("multitouch")
-    private String multitouch;
+    private final String multitouch;
     @SerializedName("nfc")
-    private String nfc;
+    private final String nfc;
     @SerializedName("camera")
-    private String camera;
+    private final String camera;
     @SerializedName("performance")
-    private String performance;
+    private final String performance;
     @SerializedName("_2g_bands")
-    private String _2gBands;
+    private final String _2gBands;
     @SerializedName("_3_5mm_jack_")
-    private String _35mmJack;
+    private final String _35mmJack;
     @SerializedName("_3g_bands")
-    private String _3gBands;
+    private final String _3gBands;
     @SerializedName("_4g_bands")
-    private String _4gBands;
+    private final String _4gBands;
 
     public Device() {
         this.deviceName = "";
@@ -279,79 +275,6 @@ public class Device extends RealmObject implements Parcelable{
         _3gBands = in.readString();
         _4gBands = in.readString();
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(deviceName);
-        dest.writeString(brand);
-        dest.writeString(technology);
-        dest.writeString(gprs);
-        dest.writeString(edge);
-        dest.writeString(announced);
-        dest.writeString(status);
-        dest.writeString(dimensions);
-        dest.writeString(weight);
-        dest.writeString(sim);
-        dest.writeString(type);
-        dest.writeString(size);
-        dest.writeString(resolution);
-        dest.writeString(cardSlot);
-        dest.writeString(alertTypes);
-        dest.writeString(loudspeaker);
-        dest.writeString(soundC);
-        dest.writeString(wlan);
-        dest.writeString(bluetooth);
-        dest.writeString(gps);
-        dest.writeString(radio);
-        dest.writeString(usb);
-        dest.writeString(messaging);
-        dest.writeString(browser);
-        dest.writeString(java);
-        dest.writeString(featuresC);
-        dest.writeString(batteryC);
-        dest.writeString(standBy);
-        dest.writeString(talkTime);
-        dest.writeString(colors);
-        dest.writeString(sensors);
-        dest.writeString(cpu);
-        dest.writeString(internal);
-        dest.writeString(os);
-        dest.writeString(primary);
-        dest.writeString(video);
-        dest.writeString(secondary);
-        dest.writeString(speed);
-        dest.writeString(networkC);
-        dest.writeString(chipset);
-        dest.writeString(features);
-        dest.writeString(musicPlay);
-        dest.writeString(protection);
-        dest.writeString(gpu);
-        dest.writeString(multitouch);
-        dest.writeString(nfc);
-        dest.writeString(camera);
-        dest.writeString(performance);
-        dest.writeString(_2gBands);
-        dest.writeString(_35mmJack);
-        dest.writeString(_3gBands);
-        dest.writeString(_4gBands);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static Creator<Device> CREATOR = new Creator<Device>() {
-        @Override
-        public Device createFromParcel(Parcel in) {
-            return new Device(in);
-        }
-
-        @Override
-        public Device[] newArray(int size) {
-            return new Device[size];
-        }
-    };
 
     public String getDeviceName() {
         return deviceName;

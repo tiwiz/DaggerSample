@@ -1,9 +1,11 @@
 package net.orgiu.disample.api;
 
+import net.orgiu.disample.database.RealmDevice;
+
 import java.util.List;
 
-public interface DeviceListener {
+interface DeviceListener {
 
-    void onDeviceDataRetrieved(List<Device> devices);
+    void onDeviceDataRetrieved(List<RealmDevice> devices);
     void onDeviceDataFailed(Throwable throwable);
 }

@@ -7,15 +7,16 @@ import android.os.IBinder;
 import com.jaredrummler.android.device.DeviceName;
 
 import net.orgiu.disample.App;
+import net.orgiu.disample.database.RealmDevice;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
+@SuppressWarnings("WeakerAccess")
 public class ApiService extends Service implements DeviceListener {
 
     @Inject
@@ -47,13 +48,13 @@ public class ApiService extends Service implements DeviceListener {
     }
 
     @Override
-    public void onDeviceDataRetrieved(List<Device> devices) {
+    public void onDeviceDataRetrieved(List<RealmDevice> devices) {
         Timber.d("Devices list updated.");
-        saveDeviceToBatabase(devices);
+        saveDeviceToDatabase(devices);
         stopSelf();
     }
 
-    private void saveDeviceToBatabase(List<Device> devices) {
+    private void saveDeviceToDatabase(List<RealmDevice> devices) {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(devices);
         realm.commitTransaction();

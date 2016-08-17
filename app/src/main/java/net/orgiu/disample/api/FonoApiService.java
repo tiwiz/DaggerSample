@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
-public interface FonoApiService {
+interface FonoApiService {
 
     @GET("getdevice")
     Observable<List<Device>> getDeviceData(@NonNull @Query("token") String token,

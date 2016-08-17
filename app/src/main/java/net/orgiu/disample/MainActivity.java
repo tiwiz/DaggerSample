@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import net.orgiu.disample.api.Device;
+import net.orgiu.disample.database.RealmDevice;
 import net.orgiu.disample.list.DeviceAdapter;
 
 import javax.inject.Inject;
@@ -15,7 +15,9 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
+@SuppressWarnings("WeakerAccess")
 public class MainActivity extends AppCompatActivity {
+
 
     @Inject
     Realm realm;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateViewVisibility() {
-        final RealmResults<Device> devices = realm.where(Device.class).findAll();
+        final RealmResults<RealmDevice> devices = realm.where(RealmDevice.class).findAll();
         if (devices.size() > 0) {
             devicesListView.setVisibility(View.VISIBLE);
             emptyStateView.setVisibility(View.GONE);

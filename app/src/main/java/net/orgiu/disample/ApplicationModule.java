@@ -6,9 +6,12 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 
+import net.orgiu.disample.api.ApiModule;
 import net.orgiu.disample.api.DeviceService;
 import net.orgiu.disample.api.FonoApiDeviceService;
+import net.orgiu.disample.api.ImageApiService;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -39,7 +42,10 @@ class ApplicationModule {
     }
 
     @Provides
-    DeviceService provideDeviceService(Context context, Retrofit retrofit) {
-        return new FonoApiDeviceService(retrofit, context.getString(R.string.fono_api_key));
+    DeviceService provideDeviceService(Context context,
+                                       @Named(ApiModule.FONO_API_RETROFIT) Retrofit fonoRetrofit,
+                                       ImageApiService imageService) {
+
+        return new FonoApiDeviceService(fonoRetrofit, context.getString(R.string.fono_api_key), imageService);
     }
 }

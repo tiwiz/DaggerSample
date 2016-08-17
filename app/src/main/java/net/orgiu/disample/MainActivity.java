@@ -1,24 +1,26 @@
 package net.orgiu.disample;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import net.orgiu.disample.database.RealmDevice;
 import net.orgiu.disample.list.DeviceAdapter;
 import net.orgiu.disample.list.ItemOffsetDecoration;
+import net.orgiu.disample.list.OnDeviceChosenListener;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
+import timber.log.Timber;
 
 @SuppressWarnings("WeakerAccess")
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnDeviceChosenListener{
 
 
     @Inject
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     View emptyStateView;
     RecyclerView devicesListView;
-    final DeviceAdapter adapter = new DeviceAdapter();
+    DeviceAdapter adapter;
 
     RealmChangeListener<Realm> changeListener;
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ((App) getApplication()).getComponent().inject(this);
 
         emptyStateView = findViewById(R.id.emptyStateView);
+        adapter = new DeviceAdapter(this);
         devicesListView = (RecyclerView) findViewById(R.id.devicesListView);
         devicesListView.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.main_view_number_of_columns)));
         devicesListView.addItemDecoration(new ItemOffsetDecoration(this, R.dimen.main_view_item_offset));
@@ -67,5 +70,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         realm.removeAllChangeListeners();
+    }
+
+    @Override
+    public void onDeviceChosen(@NonNull String deviceName) {
+        Timber.d("Chosen device: %s", deviceName);
     }
 }

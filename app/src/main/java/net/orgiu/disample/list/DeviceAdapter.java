@@ -13,11 +13,16 @@ import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DevicesViewHolder>{
     private final List<RealmDevice> devices = new ArrayList<>(0);
+    private final OnDeviceChosenListener listener;
+
+    public DeviceAdapter(OnDeviceChosenListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public DevicesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new DevicesViewHolder(inflater.inflate(R.layout.main_list_view, parent, false));
+        return new DevicesViewHolder(inflater.inflate(R.layout.main_list_view, parent, false), listener);
     }
 
     @Override

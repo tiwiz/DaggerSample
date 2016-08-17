@@ -13,14 +13,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import net.orgiu.disample.R;
 import net.orgiu.disample.database.RealmDevice;
 
-class DevicesViewHolder extends RecyclerView.ViewHolder {
+class DevicesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     private final ImageView modelImageView;
     private final TextView modelTextView;
+    private final OnDeviceChosenListener listener;
+    private String model;
 
-    DevicesViewHolder(View itemView) {
+    DevicesViewHolder(View itemView, OnDeviceChosenListener listener) {
         super(itemView);
+        itemView.findViewById(R.id.clickableView).setOnClickListener(this);
         modelImageView = (ImageView) itemView.findViewById(R.id.imgDevice);
         modelTextView = (TextView) itemView.findViewById(R.id.txtModel);
+        this.listener = listener;
     }
 
     void bindTo(@NonNull RealmDevice device) {
@@ -29,5 +33,11 @@ class DevicesViewHolder extends RecyclerView.ViewHolder {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(modelImageView);
         modelTextView.setText(DeviceUtils.clearFromBrand(device));
+        model = device.getDeviceName();
+    }
+
+    @Override
+    public void onClick(View view) {
+        listener.onDeviceChosen(model);
     }
 }

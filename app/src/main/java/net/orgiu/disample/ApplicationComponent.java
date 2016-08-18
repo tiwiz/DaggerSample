@@ -17,4 +17,6 @@ public interface ApplicationComponent {
     void inject(ApiService service);
 
     void inject(MainActivity activity);
+
+    void inject(DeviceInfoActivity activity);
 }

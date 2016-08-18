@@ -38,6 +38,6 @@ class DevicesViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        listener.onDeviceChosen(model);
+        listener.onDeviceChosen(model, modelImageView, modelTextView);
     }
 }

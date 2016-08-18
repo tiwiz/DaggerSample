@@ -26,7 +26,10 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".DeviceInfoActivity" />
+        <activity android:name=".DeviceInfoActivity"
+            android:theme="@style/AppThemeNoActionBar"
+            android:label="Device detail"/>
+
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import net.orgiu.disample.database.RealmDevice;
+import net.orgiu.disample.detail.DetailActivityIntentManager;
 import net.orgiu.disample.list.DeviceAdapter;
 import net.orgiu.disample.list.ItemOffsetDecoration;
 import net.orgiu.disample.list.OnDeviceChosenListener;
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements OnDeviceChosenLis
     }
 
     @Override
-    public void onDeviceChosen(@NonNull String deviceName) {
-        Timber.d("Chosen device: %s", deviceName);
+    public void onDeviceChosen(@NonNull String deviceName, @NonNull View image, @NonNull View text) {
+        startActivity(DetailActivityIntentManager.getLaunchIntentFor(this, deviceName),
+                DetailActivityIntentManager.getTransitionBundleWithin(this, image, text));
     }
 }

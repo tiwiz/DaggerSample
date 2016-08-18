@@ -2,6 +2,7 @@
     <string name="app_name">Device Info</string>
     <string name="fono_api_key">881e551fc8dddc3450c3973ff5245d0bae7441e92ae17848</string>
     <string name="no_devices">No devices</string>
+    <string name="transition_device_card">deviceContent</string>
     <string name="transition_device_name">deviceName</string>
     <string name="transition_device_image">deviceImage</string>
 </resources>

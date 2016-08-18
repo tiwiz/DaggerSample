@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import net.orgiu.disample.database.RealmDevice;
 import net.orgiu.disample.detail.DetailActivityIntentManager;
 import net.orgiu.disample.list.DeviceAdapter;
 import net.orgiu.disample.list.ItemOffsetDecoration;
 import net.orgiu.disample.list.OnDeviceChosenListener;
+import net.orgiu.disample.utils.DrawableUtils;
 
 import javax.inject.Inject;
 
@@ -74,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements OnDeviceChosenLis
     }
 
     @Override
-    public void onDeviceChosen(@NonNull String deviceName, @NonNull View image, @NonNull View text) {
-        startActivity(DetailActivityIntentManager.getLaunchIntentFor(this, deviceName),
-                DetailActivityIntentManager.getTransitionBundleWithin(this, image, text));
+    public void onDeviceChosen(@NonNull String deviceName, @NonNull View... views) {
+        startActivity(DetailActivityIntentManager.getLaunchIntentFor(this, deviceName, DrawableUtils.fromGlide((ImageView) views[1])),
+                DetailActivityIntentManager.getTransitionBundleWithin(this, views));
     }
 }

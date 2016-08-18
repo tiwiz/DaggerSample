@@ -1,22 +1,16 @@
 package net.orgiu.disample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.transition.Fade;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
-import net.orgiu.disample.database.RealmDevice;
 import net.orgiu.disample.detail.DetailActivityIntentManager;
+import net.orgiu.disample.detail.DetailBundle;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class DeviceInfoActivity extends AppCompatActivity {
 
@@ -29,11 +23,11 @@ public class DeviceInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_device_info);
         ((App) getApplication()).getComponent().inject(this);
 
-        String deviceName = DetailActivityIntentManager.extractDeviceNameFrom(getIntent());
-        final RealmDevice device = realm.where(RealmDevice.class).equalTo("deviceName", deviceName).findFirst();
+        DetailBundle bundle = DetailActivityIntentManager.extractDeviceDetailFrom(getIntent());
+//        final RealmDevice device = realm.where(RealmDevice.class).equalTo("deviceName", bundle.getDeviceName()).findFirst();
 
-        Glide.with(this).load(device.getImageUrl()).into((ImageView) findViewById(R.id.imgDevice));
-        ((TextView) findViewById(R.id.txtModel)).setText(device.getDeviceName());
+        ((ImageView) findViewById(R.id.imgDevice)).setImageBitmap(bundle.getDeviceImage());
+        ((TextView) findViewById(R.id.txtModel)).setText(bundle.getDeviceName());
 
     }
 }

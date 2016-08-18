@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
+import android.view.Window;
 
 import net.orgiu.disample.DeviceInfoActivity;
 import net.orgiu.disample.R;
@@ -40,8 +41,10 @@ public class DetailActivityIntentManager {
         Pair<View, String> cardPair = Pair.create(views[0], root.getString(R.string.transition_device_card));
         Pair<View, String> imagePair = Pair.create(views[1], root.getString(R.string.transition_device_image));
         Pair<View, String> namePair = Pair.create(views[2], root.getString(R.string.transition_device_name));
+        Pair<View, String> statusBarPair = Pair.create(root.findViewById(android.R.id.statusBarBackground), Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME);
+        Pair<View, String> navigationPair = Pair.create(root.findViewById(android.R.id.navigationBarBackground), Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
 
-        return ActivityOptionsCompat.makeSceneTransitionAnimation(root, cardPair, imagePair, namePair).toBundle();
+        return ActivityOptionsCompat.makeSceneTransitionAnimation(root, cardPair, imagePair, namePair, statusBarPair, navigationPair).toBundle();
     }
 
     public static DetailBundle extractDeviceDetailFrom(@NonNull Intent intent) {

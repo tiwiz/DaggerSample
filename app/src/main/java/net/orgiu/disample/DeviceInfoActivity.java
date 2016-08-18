@@ -3,6 +3,8 @@ package net.orgiu.disample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,5 +34,6 @@ public class DeviceInfoActivity extends AppCompatActivity {
 
         Glide.with(this).load(device.getImageUrl()).into((ImageView) findViewById(R.id.imgDevice));
         ((TextView) findViewById(R.id.txtModel)).setText(device.getDeviceName());
+
     }
 }
